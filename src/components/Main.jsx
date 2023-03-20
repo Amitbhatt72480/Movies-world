@@ -74,10 +74,11 @@ const Main = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="h-[400px] bg-black  py-28 ">
+			<div className="h-[300px] bg-black  pt-28 ">
 				<h1 className="font-secondary text-5xl text-center text-white">Search Your Movie</h1>
 				<div className="flex justify-center py-3">
-					<input className='mr-3 rounded-lg px-3 font-semibold font-secondary tracking-wide  py-1' onChange={(e) => { setSearch(e.target.value) }} type="text" />
+					<input 
+					className='mr-3 rounded-lg px-3 font-semibold font-secondary tracking-wide  py-1' onChange={(e) => { setSearch(e.target.value) }} type="text" />
 					<TfiSearch onClick={handleSearch} className='text-white cursor-pointer  hover:scale-105' size={31} />
 				</div>
 			</div>
@@ -85,9 +86,9 @@ const Main = () => {
 			{search && showcontent ? <div className='bg-black text-white'>
 				<h1 className="text-4xl p-10">Search result for {search}</h1>
 				<div className="relative ">
-					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full h-full  ">
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full h-full">
 						{searchdata && searchdata.map((item) => {
-							return <Card title={item.title} image={item.backdrop_path} />
+							return <Card id={item.id}  title={item.title} image={item.backdrop_path} />
 						})}
 					</div>
 				</div>
@@ -96,7 +97,7 @@ const Main = () => {
 					<h1 className="text-2xl font-primary p-4 tracking-widest">Now Playing</h1>
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  w-full h-full  ">
 						{nowplaying && nowplaying.map((item) => {
-							return <Card title={item.title} image={item.backdrop_path} />
+							return <Card id={item.id}  title={item.title} image={item.backdrop_path} />
 						})}
 					</div>
 				</div>
@@ -104,7 +105,7 @@ const Main = () => {
 					<h1 className="text-2xl font-primary p-4 tracking-widest">Top Rated Shows</h1>
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full h-full  ">
 						{toprated && toprated.map((item) => {
-							return <Card title={item.title} image={item.backdrop_path} />
+							return <Card id={item.id}  title={item.title} image={item.backdrop_path} />
 						})}
 					</div>
 				</div>
@@ -112,7 +113,7 @@ const Main = () => {
 					<h1 className="text-2xl font-primary p-4 tracking-widest">Upcoming Shows</h1>
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full h-full  ">
 						{upcoming && upcoming.map((item) => {
-							return <Card title={item.title} image={item.backdrop_path} />
+							return <Card  id={item.id} title={item.title} image={item.backdrop_path} />
 						})}
 					</div>
 				</div>
@@ -120,7 +121,7 @@ const Main = () => {
 					<h1 className="text-2xl font-primary p-4 tracking-widest">Popular</h1>
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full h-full  ">
 						{popular && popular.map((item) => {
-							return <Card title={item.title} image={item.backdrop_path} />
+							return <Card  id={item.id} title={item.title} image={item.backdrop_path} />
 						})}
 					</div>
 				</div>

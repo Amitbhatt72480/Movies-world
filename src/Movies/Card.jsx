@@ -1,14 +1,43 @@
 import React, { useState } from 'react'
 import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
+import { UserAuth } from '../context/AuthProvider';
+import {db} from '../firebase'
+import {arrayUnion,arrayRemove, doc, updateDoc} from 'firebase/firestore'
 
-const Card = ({key, title, image}) => {
+const Card = ({id, title, image}) => {
 
+	
 	const [like, setLike] = useState(false);
+	const [saved, setSaved] = useState(false);
+	const {user} = UserAuth();
 
-	const handleLike = ()=>{
-		setLike((prev)=>{
-			return !prev
+	const movieID = doc(db, 'users', `${user?.email}`)
+
+
+
+	const handleLike = async ()=>{
+		setLike(true)
+		setSaved(true)
+		await updateDoc(movieID, {
+			savedShows: arrayUnion({
+				id: id,
+				title:title,
+				img: image
+			})
 		})
+	
+	}
+	const removelike = async ()=>{
+		setLike(false)
+		setSaved(false)
+		await updateDoc(movieID, {
+			savedShows: arrayRemove({
+				id: id,
+				title:title,
+				img: image
+			})
+		})
+	
 	}
 
   return (
@@ -18,9 +47,9 @@ const Card = ({key, title, image}) => {
 			<div className="lg:absolute h-full w-full top-0 left-0 lg:hover:bg-black/80 lg:opacity-0 hover:opacity-75">
 				<p className="text-white text-sm font-secondary font-bold text-center lg:mt-16">{title}</p>
 				<p className="absolute top-3 left-2 ">
-				{like ? <AiFillHeart onClick={handleLike}/> :<AiOutlineHeart onClick={handleLike} />}</p>
+				{like ? <AiFillHeart onClick={removelike}/> 
+				:<AiOutlineHeart onClick={handleLike} />}</p>
 			</div>
-			
 		</div>
 	</>
   )

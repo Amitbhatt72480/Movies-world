@@ -53,7 +53,7 @@ const Signup = () => {
             </div>
             <p className="mt-1">Already have an account? <Link to="/" className='text-blue-500 ml-1'>Login</Link> </p>
             <div className="flex items-center mt-8">
-              <button className="bg-[#4285F4] font-secondary font-semibold text-white px-5 py-2 rounded-full mr-7 hover:bg-blue-600 hover:text-white ">Login</button>
+              <button className="bg-[#4285F4] font-secondary font-semibold text-white px-5 py-2 rounded-full mr-7 hover:bg-blue-600 hover:text-white ">Sign up</button>
             </div>
           </form>
         </div>
